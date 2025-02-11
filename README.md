@@ -19,17 +19,19 @@ This project provides a side-by-side comparison of two popular object detection 
 ## Installation
 
 1. Clone this repository:
-   git clone https://github.com/Infatoshi/rt-detr-yolo-compare
-   cd rt-detr-yolo-compare
+```bash
+git clone https://github.com/Infatoshi/rt-detr-yolo-compare
+cd rt-detr-yolo-compare
+```
 
 2. Install required packages:
 ```bash
 pip install git+https://github.com/huggingface/transformers torch opencv-python Pillow numpy matplotlib ultralytics
 ```
 
-3. Download the yolov11n.pt model:
+3. Download the yolov11n.pt and 11x.pt models:
 ```bash
-wget https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov11n.pt
+yolo predict model=yolo11x.pt source='assets/fluffy.png' && yolo predict model=yolo11n.pt source='assets/fluffy.png'
 ```
 
 ## Usage
@@ -47,16 +49,16 @@ The project includes three main scripts:
 
 Press 'q' to quit any of the running scripts.
 
-Also... for a one liner yolo v11 usage. Try `yolo predict model=yolo11n.pt source='assets/fluffy.png'`
+Also... for a one liner yolo v11 usage. Try `yolo predict model=yolo11x.pt source='assets/fluffy.png'`
 
 ## Models Used
 
 - RTDetr: Using the `PekingU/rtdetr_v2_r101vd` model for high accuracy object detection (resnet101 base)
-- YOLOv8: Using the `yolov11n.pt` model (nano version) for fast inference
+- YOLOv8: Using the `yolov11x.pt` model (nano version) for fast inference
 
 ## Performance Notes
 
-- The script automatically detects and uses MPS (Apple Silicon) if available, otherwise falls back to CPU
+- The script automatically detects and uses CUDA or MPS (Apple Silicon - Metal Performance Shaders) if available, otherwise falls back to CPU
 - RTDetr generally provides high accuracy but may be slower than YOLOv8
 - yolov11n (nano) model is optimized for speed while maintaining reasonable accuracy
 
@@ -65,14 +67,5 @@ Also... for a one liner yolo v11 usage. Try `yolo predict model=yolo11n.pt sourc
 If you encounter any issues:
 
 1. Ensure your webcam is properly connected and accessible
-2. Check if you have sufficient GPU/CPU resources
-3. Verify all dependencies are correctly installed
-4. Make sure you have proper permissions to access the webcam
-
-## License
-
-[Add your license information here]
-
-## Contributing
-
-[Add contribution guidelines if applicable]
+2. Verify all dependencies are correctly installed
+3. Make sure you have proper permissions to access the webcam
