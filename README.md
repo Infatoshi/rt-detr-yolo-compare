@@ -44,23 +44,31 @@ The project includes three main scripts:
 2. yolo.py - Runs only YOLOv8 detection:
    python yolo.py
 
-3. v1.py - Runs only RTDetr detection:
-   python v1.py
+3. rtdetr_v2.py - Runs only RTDetr detection:
+   python rtdetr_v2.py
 
-Press 'q' to quit any of the running scripts.
+Press `q` to quit any of the running scripts.
 
-Also... for a one liner yolo v11 usage. Try `yolo predict model=yolo11x.pt source='assets/fluffy.png'`
+Also... for a one liner yolo v11 usage. Try 
+```bash
+yolo predict model=yolo11x.pt source='assets/fluffy.png'
+```
 
 ## Models Used
 
-- RTDetr: Using the `PekingU/rtdetr_v2_r101vd` model for high accuracy object detection (resnet101 base)
-- YOLOv8: Using the `yolov11x.pt` model (nano version) for fast inference
+- RTDetr_V2_R101: `PekingU/rtdetr_v2_r101vd` (resnet101 base)
+- RTDetr_V2_R18: `PekingU/rtdetr_v2_r18vd` (resnet18 base)
+- YOLOv11_X: `yolo11x.pt` (xlarge version)
+- YOLOv11_N: `yolo11n.pt` (nano version)
+
 
 ## Performance Notes
 
 - The script automatically detects and uses CUDA or MPS (Apple Silicon - Metal Performance Shaders) if available, otherwise falls back to CPU
-- RTDetr generally provides high accuracy but may be slower than YOLOv8
-- yolov11n (nano) model is optimized for speed while maintaining reasonable accuracy
+- RTDetr_V2_R101 -> more accuracy, less speed
+- RTDetr_V2_R18 -> less accuracy, more speed
+- YOLOv11_X -> more accuracy, less speed
+- YOLOv11_N -> less accuracy, more speed
 
 ## Troubleshooting
 
